@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Admin Panel - MyBucket</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- FontAwesome CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+  <!-- Custom Styles -->
+  
+  <style>
+    body {
+      background-color: #f5f5f5;
+      font-family: 'Arial', sans-serif;
+    }
+
+    .sidebar {
+  width: 250px;
+  background-color: #2c3e50;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+}
+
+.sidebar-header {
+  padding: 20px;
+  text-align: center;
+  background-color: #34495e;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.menu-item {
+  width: 100%;
+}
+
+.menu-link {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  color: #ecf0f1;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.1rem;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.menu-link i {
+  margin-right: 15px;
+  font-size: 1.3rem;
+}
+
+.menu-link:hover {
+  background-color: #16a085;
+  color: #fff;
+}
+
+.menu-link.active {
+  background-color: #16a085;
+  color: #fff;
+}
+
+    .content {
+      padding: 20px;
+      margin-left: 250px;
+    }
+
+    .navbar {
+  width: 100%;
+  height: 60px;
+  background-color: #2c3e50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.navbar-left, .navbar-right {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-menu {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-item {
+  margin-right: 20px;
+}
+
+.navbar-link {
+  display: flex;
+  align-items: center;
+  color: #ecf0f1;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.1rem;
+  transition: color 0.3s;
+}
+
+.navbar-link i {
+  margin-right: 10px;
+  font-size: 1.3rem;
+}
+
+.navbar-link:hover {
+  color: #16a085;
+}
+
+.navbar-left .navbar-item:last-child {
+  margin-right: 0;
+}
+
+.navbar-right .navbar-item:last-child {
+  margin-right: 0;
+}
+
+
+    .card {
+      border: none;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+
+    .card-header {
+      background-color: #34495e;
+      color: #ffffff;
+      border-radius: 8px 8px 0 0;
+    }
+
+    .btn-primary {
+      background-color: #34495e;
+      border-color: #34495e;
+    }
+
+    .btn-primary:hover {
+      background-color: #34495e;
+      border-color: #34495e;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #343a40;
+      color: #ffffff;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      margin-left: 250px;
+    }
+
+    .table thead th {
+      background-color: #34495e;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <h3>Dashboard</h3>
+    </div>
+    <ul class="sidebar-menu">
+      <li class="menu-item">
+        <a href="admin.html" class="menu-link">
+          <i class="fa fa-home"></i>
+          <span>Home</span>
+        </a>
+      </li>
+      <li class="menu-item">
+        <a href="admin produk.html" class="menu-link">
+          <i class="fa fa-box"></i>
+          <span>Products</span>
+        </a>
+      </li>
+      <li class="menu-item">
+        <a href="admin user.html" class="menu-link">
+          <i class="fa fa-users"></i>
+          <span>Users</span>
+        </a>
+      </li>
+      <li class="menu-item">
+        <a href="admin order.html" class="menu-link">
+          <i class="fa fa-shopping-cart"></i>
+          <span>Orders</span>
+        </a>
+      </li>
+      <li class="menu-item">
+        <a href="#settings" class="menu-link">
+          <i class="fa fa-cog"></i>
+          <span>Settings</span>
+        </a>
+      </li>
+    </ul>
+  </aside>
+  
+
+  <!-- Content -->
+  <div class="content">
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-left">
+          <ul class="navbar-menu">
+            <li class="navbar-item">
+              <a href="#profile" class="navbar-link">
+                <i class="fa fa-user"></i>
+                <span>Profile Settings</span>
+              </a>
+            </li>
+            <li class="navbar-item">
+              <a href="#logout" class="navbar-link">
+                <i class="fa fa-sign-out-alt"></i>
+                <span>Logout</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="navbar-right">
+          <!-- Menu lainnya bisa ditambahkan di sini -->
+          <ul class="navbar-menu">
+            <li class="navbar-item">
+              <a href="#home" class="navbar-link">
+                <i class="fa fa-home"></i>
+                <span>Home</span>
+              </a>
+            </li>
+            <li class="navbar-item">
+              <a href="#notifications" class="navbar-link">
+                <i class="fa fa-bell"></i>
+                <span>Notifications</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      
+
+    <!-- Main Content -->
+    <div class="container-fluid mt-4">
+        <div class="row">
+          <!-- Total Products -->
+          <div class="col-md-6 mb-4">
+            <div class="card text-center p-3 shadow-sm border-0">
+              <div class="card-body">
+                <div class="d-flex align-items-center justify-content-center">
+                  <div class="icon-circle bg-primary text-white mr-3">
+                    <i class="fas fa-box fa-2x"></i>
+                  </div>
+                  <div>
+                    <h3 class="card-title mb-0">150</h3>
+                    <p class="card-text text-muted">Total Products</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      
+          <!-- Total Users -->
+          <div class="col-md-6 mb-4">
+            <div class="card text-center p-3 shadow-sm border-0">
+              <div class="card-body">
+                <div class="d-flex align-items-center justify-content-center">
+                  <div class="icon-circle bg-success text-white mr-3">
+                    <i class="fas fa-users fa-2x"></i>
+                  </div>
+                  <div>
+                    <h3 class="card-title mb-0">2</h3>
+                    <p class="card-text text-muted">Total Users</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <style>
+        .icon-circle {
+          width: 60px;
+          height: 60px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 50%;
+        }
+      </style>
+      
+
+      <!-- List Users -->
+      <!-- List Users -->
+<div class="row mt-4">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">List Users</div>
+        <div class="card-body">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Role</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>John Doe</td>
+                <td>johndoe@example.com</td>
+                <td>User</td>
+                <td>
+                  <button class="btn btn-sm btn-primary"><i class="fas fa-edit"></i> Edit</button>
+                  <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Delete</button>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Jane Smith</td>
+                <td>janesmith@example.com</td>
+                <td>User</td>
+                <td>
+                  <button class="btn btn-sm btn-primary"><i class="fas fa-edit"></i> Edit</button>
+                  <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Delete</button>
+                </td>
+              </tr>
+              <!-- Tambahkan lebih banyak user di sini -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Uang Masuk -->
+<div class="row mt-4">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">Income</div>
+      <div class="card-body">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Date</th>
+              <th scope="col">description</th>
+              <th scope="col">amount</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>2024-08-20</td>
+              <td>Pembayaran Produk A</td>
+              <td>Rp 1,000,000</td>
+              <td>
+                <button class="btn btn-sm btn-primary"><i class="fas fa-edit"></i> Edit</button>
+                <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Delete</button>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>2024-08-21</td>
+              <td>Pembayaran Produk B</td>
+              <td>Rp 500,000</td>
+              <td>
+                <button class="btn btn-sm btn-primary"><i class="fas fa-edit"></i> Edit</button>
+                <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Delete</button>
+              </td>
+            </tr>
+            <!-- Tambahkan lebih banyak transaksi uang masuk di sini -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Messages -->
+<div class="row mt-4">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">Messages</div>
+      <div class="card-body">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Sender Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Subject</th>
+              <th scope="col">Message</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>John Doe</td>
+              <td>johndoe@example.com</td>
+              <td>Feedback Produk</td>
+              <td>Produk sangat bagus!</td>
+              <td>
+                <button class="btn btn-sm btn-primary"><i class="fas fa-reply"></i> Reply</button>
+                <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Delete</button>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Jane Smith</td>
+              <td>janesmith@example.com</td>
+              <td>Permintaan Informasi</td>
+              <td>Saya butuh informasi lebih lanjut tentang produk ini.</td>
+              <td>
+                <button class="btn btn-sm btn-primary"><i class="fas fa-reply"></i> Reply</button>
+                <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Delete</button>
+              </td>
+            </tr>
+            <!-- Tambahkan lebih banyak pesan di sini -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+  </div>
+
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
